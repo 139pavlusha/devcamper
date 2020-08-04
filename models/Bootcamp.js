@@ -6,21 +6,24 @@ const BootcampSchema = new mongoose.Schema({
         required: [true, 'Please add a name'],
         unique: true,
         trim: true,
-        maxLength: [50, 'Name can not be more than 50 characters']
+        maxlength: [50, 'Name can not be more than 50 characters']
     },
     slug: String,
     description: {
         type: String,
         required: [true, 'Please add a description'],
-        maxLength: [50, 'Name can not be more than 500 characters']
+        maxlength: [500, 'Description can not be more than 500 characters']
     },
-    match: [
-        /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
-        'Please use a valid URL with HTTP or HTTPS'
-    ],
+    website: {
+        type: String,
+        match: [
+            /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/,
+            'Please use a valid URL with HTTP or HTTPS'
+        ],
+    },
     phone: {
         type: String,
-        maxLength: [20, 'Phone number can not be longer than 20 characters']
+        maxlength: [20, 'Phone number can not be longer than 20 characters']
     },
     email: {
         type: String,
@@ -29,28 +32,28 @@ const BootcampSchema = new mongoose.Schema({
             'Please add a valid email'
         ]
     },
-    adress: {
+    address: {
         type: String,
         required: [true, 'Please add an address']
     },
     location: {
-        // GeoJSON Point
-        type: {
-            type: String,
-            enum: ['Point'],
-            required: true
-        },
-        coordinates: {
-            type: [Number],
-            required: true,
-            index: '2dsphere'
-        },
-        formattedAdress: String,
-        street: String,
-        city: String,
-        state: String,
-        zipcode: String,
-        country: String
+        // // GeoJSON Point
+        // type: {
+        //     type: String,
+        //     enum: ['Point'],
+        //     required: true
+        // },
+        // coordinates: {
+        //     type: [Number],
+        //     required: true,
+        //     index: '2dsphere'
+        // },
+        // formattedAdress: String,
+        // street: String,
+        // city: String,
+        // state: String,
+        // zipcode: String,
+        // country: String
     },
     careers: {
         // Aray of Strings
