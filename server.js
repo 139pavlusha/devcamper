@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
+const cokieParser = require('cookie-parser')
 const fileupload = require('express-fileupload')
 const colors = require('colors');
 const errorHandler = require('./middleware/error')
@@ -17,12 +18,16 @@ connectDB();
 const bootcamps = require('./routes/bootcamps');
 const courses = require('./routes/courses');
 const auth = require('./routes/auth');
+const cookieParser = require('cookie-parser');
 
 
 const app = express();
 
 // Body parser
 app.use(express.json());
+
+// Cookie Parser
+app.use(cookieParser());
 
 // Dev logging Middleware
 if (process.env.NODE_ENV === 'development') {
