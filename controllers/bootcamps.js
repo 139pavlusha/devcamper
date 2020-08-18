@@ -59,7 +59,7 @@ exports.updateBootcamp = asyncHandler(async (req, res, next) => {
     }
 
     // Make sure is bootcamp owner
-    if (bootcamp.user.toString() !== req.user.i && req.user.role !== 'admin') {
+    if (bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(new ErrorResponse(`User ${req.user.id} doesn't have access to update this bootcamp`, 404))
     }
 
@@ -83,7 +83,7 @@ exports.deleteBootcamp = asyncHandler(async (req, res, next) => {
     }
 
     // Make sure is bootcamp owner
-    if (bootcamp.user.toString() !== req.user.i && req.user.role !== 'admin') {
+    if (bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(new ErrorResponse(`User ${req.user.id} doesn't have access to delete this bootcamp`, 404))
     }
 
@@ -128,7 +128,7 @@ exports.bootcampPhotoUpload = asyncHandler(async (req, res, next) => {
     }
 
     // Make sure is bootcamp owner
-    if (bootcamp.user.toString() !== req.user.i && req.user.role !== 'admin') {
+    if (bootcamp.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(new ErrorResponse(`User ${req.user.id} doesn't have access to update this bootcamp`, 404))
     }
 

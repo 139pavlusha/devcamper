@@ -50,7 +50,7 @@ exports.addCourse = asyncHandler(async (req, res, next) => {
     }
 
     // Make sure is course owner
-    if (course.user.toString() !== req.user.i && req.user.role !== 'admin') {
+    if (course.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(new ErrorResponse(`User ${req.user.id} doesn't have access to add this course to bootcamp ${bootcamp.id}`, 404))
     }
 
@@ -71,7 +71,7 @@ exports.updateCourse = asyncHandler(async (req, res, next) => {
     }
 
     // Make sure is course owner
-    if (course.user.toString() !== req.user.i && req.user.role !== 'admin') {
+    if (course.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(new ErrorResponse(`User ${req.user.id} doesn't have access to update this course`, 404))
     }
 
@@ -95,7 +95,7 @@ exports.deleteCourse = asyncHandler(async (req, res, next) => {
     }
 
     // Make sure is course owner
-    if (course.user.toString() !== req.user.i && req.user.role !== 'admin') {
+    if (course.user.toString() !== req.user.id && req.user.role !== 'admin') {
         return next(new ErrorResponse(`User ${req.user.id} doesn't have access to delete this course`, 404))
     }
 
