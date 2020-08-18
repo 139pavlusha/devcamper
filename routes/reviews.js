@@ -2,7 +2,9 @@ const express = require('express');
 const {
     getReviews,
     getReview,
-    addReview } = require('../controllers/reviews');
+    addReview,
+    updateReview,
+    deleteReview } = require('../controllers/reviews');
 
 const { protect, authorize } = require('../middleware/auth');
 const advancedResults = require('../middleware/advancedResults');
@@ -16,6 +18,9 @@ router.route('/')
     .post(protect, authorize('user', 'admin'), addReview);
 
 router.route('/:id')
-    .get(getReview);
+    .get(getReview)
+    .put(protect, authorize('user', 'admin'), updateReview)
+    .delete(protect, authorize('user', 'admin'), deleteReview);
+
 
 module.exports = router; 
