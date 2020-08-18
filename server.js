@@ -2,12 +2,13 @@ const path = require('path');
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
-const cokieParser = require('cookie-parser')
-const fileupload = require('express-fileupload')
+const cokieParser = require('cookie-parser');
+const fileupload = require('express-fileupload');
 const colors = require('colors');
+const mongoSanitize = require('express-mongo-sanitize');
 const cookieParser = require('cookie-parser');
-const errorHandler = require('./middleware/error')
-const connectDB = require('./config/db')
+const errorHandler = require('./middleware/error');
+const connectDB = require('./config/db');
 
 // Load env vars
 dotenv.config({ path: './config/config.env' });
@@ -42,6 +43,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // File uploading
 app.use(fileupload());
+
+// Sanitize data
+app.use(mongoSanitize());
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
